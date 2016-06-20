@@ -6,7 +6,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -48,9 +47,9 @@ public class BottomPopUpDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_user_info_more, null);
+        View view = inflater.inflate(R.layout.bottom_pop_up_dialog, null);
         initView(view);
-        registerListener(view);
+//        registerListener(view);
         setCancelable(true);
         return view;
     }
@@ -75,7 +74,7 @@ public class BottomPopUpDialog extends DialogFragment {
 
             mContentLayout.addView(dialogItem);
 
-            dialogItem.setOnClickListener(v -> mListener.onDialogOnClick(dialogItem.getItemContent()));
+//            dialogItem.setOnClickListener(v -> mListener.onDialogOnClick(dialogItem.getItemContent()));
         }
 
     }
@@ -96,15 +95,15 @@ public class BottomPopUpDialog extends DialogFragment {
         mColorArray.put(index,color);
     }
 
-    private void registerListener(View view) {
-        view.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN){
-                dismiss();
-            }
-            return false;
-        });
-        mCancel.setOnClickListener(v -> dismiss());
-    }
+//    private void registerListener(View view) {
+//        view.setOnTouchListener((v, event) -> {
+//            if (event.getAction() == MotionEvent.ACTION_DOWN){
+//                dismiss();
+//            }
+//            return false;
+//        });
+//        mCancel.setOnClickListener(v -> dismiss());
+//    }
 
 
     public interface BottomPopDialogOnClickListener{
