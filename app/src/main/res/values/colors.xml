@@ -7,4 +7,5 @@
     <color name="text_color">#3B3C3D</color>
     <color name="line_color">#E0E0E0</color>
     <color name="transparent_70">#70000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
