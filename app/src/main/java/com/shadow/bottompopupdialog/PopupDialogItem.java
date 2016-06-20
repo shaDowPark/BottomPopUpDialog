@@ -45,6 +45,10 @@ public class PopupDialogItem extends LinearLayout {
         mContent = text;
     }
 
+    public void setLineColor(int color){
+        mLineView.setBackgroundResource(color);
+    }
+
     public void hideLine() {
         mLineView.setVisibility(GONE);
     }
