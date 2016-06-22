@@ -80,7 +80,9 @@ public class BottomPopUpDialog extends DialogFragment {
                 dialogItem.setTextColor(mColorArray.get(i));
             }
 
-            dialogItem.setLineColor(mLineColor);
+            if (mLineColor != 0){
+                dialogItem.setLineColor(mLineColor);
+            }
 
             mContentLayout.addView(dialogItem);
 

@@ -2,4 +2,8 @@
     <string name="app_name">BottomPopUpDialog</string>
     <string name="action_settings">Settings</string>
     <string name="cancel">取消</string>
+    <string name="one">海贼王</string>
+    <string name="two">火影传说</string>
+    <string name="three">银魂</string>
+    <string name="four">进击的巨人</string>
 </resources>

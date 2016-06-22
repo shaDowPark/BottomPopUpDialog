@@ -18,12 +18,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if (fab != null){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BottomPopUpDialog dialog = new BottomPopUpDialog();
+                    dialog.refreshData(getResources().getStringArray(R.array.popup_array));
+                    dialog.setItemTextColor(0,R.color.colorPrimary);
+                    dialog.show(getSupportFragmentManager(),"tag");
+                }
+            });
+        }
 
-            }
-        });
     }
 
     @Override
