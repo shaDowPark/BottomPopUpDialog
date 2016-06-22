@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
                     BottomPopUpDialog dialog = new BottomPopUpDialog();
                     dialog.refreshData(getResources().getStringArray(R.array.popup_array));
                     dialog.setItemTextColor(0,R.color.colorPrimary);
+                    dialog.setItemOnListener(new BottomPopUpDialog.BottomPopDialogOnClickListener() {
+                        @Override
+                        public void onDialogClick(String tag) {
+
+                        }
+                    });
                     dialog.show(getSupportFragmentManager(),"tag");
                 }
             });
