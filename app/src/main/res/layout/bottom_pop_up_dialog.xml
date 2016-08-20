@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/round_rect_white">
+        android:background="@drawable/round_rect_white"
+        android:padding="2dp">
 
         <LinearLayout
             android:id="@+id/pop_dialog_content_layout"

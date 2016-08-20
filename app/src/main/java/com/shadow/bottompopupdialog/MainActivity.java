@@ -18,20 +18,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        if (fab != null){
+        if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    BottomPopUpDialog dialog = new BottomPopUpDialog();
-                    dialog.refreshData(getResources().getStringArray(R.array.popup_array));
-                    dialog.setItemTextColor(0,R.color.colorPrimary);
-                    dialog.setItemOnListener(new BottomPopUpDialog.BottomPopDialogOnClickListener() {
-                        @Override
-                        public void onDialogClick(String tag) {
+                    BottomPopUpDialog dialog = new BottomPopUpDialog()
+                            .refreshData(getResources().getStringArray(R.array.popup_array))
+                            .setItemTextColor(0, R.color.colorPrimary)
+                            .setItemOnListener(new BottomPopUpDialog.BottomPopDialogOnClickListener() {
+                                @Override
+                                public void onDialogClick(String tag) {
 
-                        }
-                    });
-                    dialog.show(getSupportFragmentManager(),"tag");
+                                }
+                            });
+                    dialog.show(getSupportFragmentManager(), "tag");
                 }
             });
         }

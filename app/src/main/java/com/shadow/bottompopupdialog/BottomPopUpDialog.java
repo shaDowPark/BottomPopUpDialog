@@ -80,7 +80,7 @@ public class BottomPopUpDialog extends DialogFragment {
                 dialogItem.setTextColor(mColorArray.get(i));
             }
 
-            if (mLineColor != 0){
+            if (mLineColor != 0) {
                 dialogItem.setLineColor(mLineColor);
             }
 
@@ -95,24 +95,28 @@ public class BottomPopUpDialog extends DialogFragment {
         }
     }
 
-    public void refreshData(String[] dataArray) {
+    public BottomPopUpDialog refreshData(String[] dataArray) {
         mDataArray = dataArray;
+        return this;
     }
 
-    public void setItemOnListener(BottomPopDialogOnClickListener listener) {
+    public BottomPopUpDialog setItemOnListener(BottomPopDialogOnClickListener listener) {
         mListener = listener;
+        return this;
     }
 
 
     /**
      * 设置字体颜色
      */
-    public void setItemTextColor(int index, int color) {
+    public BottomPopUpDialog setItemTextColor(int index, int color) {
         mColorArray.put(index, color);
+        return this;
     }
 
-    public void setItemLineColor(int color){
+    public BottomPopUpDialog setItemLineColor(int color) {
         mLineColor = color;
+        return this;
     }
 
     private void registerListener(View view) {
