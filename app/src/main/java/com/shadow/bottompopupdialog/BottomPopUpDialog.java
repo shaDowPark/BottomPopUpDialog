@@ -32,6 +32,8 @@ public class BottomPopUpDialog extends DialogFragment {
 
     private boolean mIsCallBackDismiss = false;
 
+    private int mBackgroundShadowColor = R.color.transparent_70;
+
     public BottomPopUpDialog() {
         super();
     }
@@ -40,7 +42,7 @@ public class BottomPopUpDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //该方法需要放在onViewCreated比较合适, 若在 onStart 在部分机型(如:小米3)会出现闪烁的情况
-        getDialog().getWindow().setBackgroundDrawableResource(R.color.transparent_70);
+        getDialog().getWindow().setBackgroundDrawableResource(mBackgroundShadowColor);
     }
 
     @Override
@@ -98,6 +100,10 @@ public class BottomPopUpDialog extends DialogFragment {
         }
     }
 
+
+
+
+
     /**
      * 设置数据
      * */
@@ -119,6 +125,7 @@ public class BottomPopUpDialog extends DialogFragment {
      * 设置字体颜色
      *
      * @param index item的索引
+     * @param color res color
      */
     public BottomPopUpDialog setItemTextColor(int index, int color) {
         mColorArray.put(index, color);
@@ -140,6 +147,17 @@ public class BottomPopUpDialog extends DialogFragment {
         mIsCallBackDismiss = dismiss;
         return this;
     }
+
+
+    /**
+     * 设置dialog背景阴影颜色
+     * */
+    public BottomPopUpDialog setBackgroundShadowColor(int color){
+        mBackgroundShadowColor = color;
+        return this;
+    }
+
+
 
     private void registerListener(View view) {
 

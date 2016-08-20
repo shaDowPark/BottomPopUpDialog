@@ -58,7 +58,7 @@ public class PopupDialogItem extends LinearLayout {
     }
 
     public void setTextColor(int textColor) {
-        mContentView.setTextColor(textColor);
+        mContentView.setTextColor(mContext.getResources().getColor(textColor));
     }
 
 }

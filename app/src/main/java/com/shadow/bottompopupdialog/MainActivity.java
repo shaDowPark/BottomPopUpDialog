@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(final View view) {
                     final BottomPopUpDialog dialog = new BottomPopUpDialog()
                             .setDialogData(getResources().getStringArray(R.array.popup_array))
-                            .setItemTextColor(0, R.color.colorPrimary)
+                            .setItemTextColor(2, R.color.colorAccent)
                             .setCallBackDismiss(true)
                             .setItemOnListener(new BottomPopUpDialog.BottomPopDialogOnClickListener() {
                                 @Override
