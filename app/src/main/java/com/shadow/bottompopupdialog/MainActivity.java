@@ -2,6 +2,7 @@ package com.shadow.bottompopupdialog;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -21,17 +22,20 @@ public class MainActivity extends AppCompatActivity {
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    BottomPopUpDialog dialog = new BottomPopUpDialog()
-                            .refreshData(getResources().getStringArray(R.array.popup_array))
+                public void onClick(final View view) {
+                    final BottomPopUpDialog dialog = new BottomPopUpDialog()
+                            .setDialogData(getResources().getStringArray(R.array.popup_array))
                             .setItemTextColor(0, R.color.colorPrimary)
+                            .setCallBackDismiss(true)
                             .setItemOnListener(new BottomPopUpDialog.BottomPopDialogOnClickListener() {
                                 @Override
                                 public void onDialogClick(String tag) {
-
+                                    Snackbar.make(view, tag, Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
                                 }
                             });
                     dialog.show(getSupportFragmentManager(), "tag");
+
                 }
             });
         }

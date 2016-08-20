@@ -30,6 +30,8 @@ public class BottomPopUpDialog extends DialogFragment {
 
     private int mLineColor;
 
+    private boolean mIsCallBackDismiss = false;
+
     public BottomPopUpDialog() {
         super();
     }
@@ -90,16 +92,23 @@ public class BottomPopUpDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     mListener.onDialogClick(dialogItem.getItemContent());
+                    if (mIsCallBackDismiss) dismiss();
                 }
             });
         }
     }
 
-    public BottomPopUpDialog refreshData(String[] dataArray) {
+    /**
+     * 设置数据
+     * */
+    public BottomPopUpDialog setDialogData(String[] dataArray) {
         mDataArray = dataArray;
         return this;
     }
 
+    /**
+     * 设置监听item监听器
+     * */
     public BottomPopUpDialog setItemOnListener(BottomPopDialogOnClickListener listener) {
         mListener = listener;
         return this;
@@ -108,14 +117,27 @@ public class BottomPopUpDialog extends DialogFragment {
 
     /**
      * 设置字体颜色
+     *
+     * @param index item的索引
      */
     public BottomPopUpDialog setItemTextColor(int index, int color) {
         mColorArray.put(index, color);
         return this;
     }
 
+    /**
+     * 设置item分隔线颜色
+     */
     public BottomPopUpDialog setItemLineColor(int color) {
         mLineColor = color;
+        return this;
+    }
+
+    /**
+     * 设置是否点击回调取消dialog
+     */
+    public BottomPopUpDialog setCallBackDismiss(boolean dismiss) {
+        mIsCallBackDismiss = dismiss;
         return this;
     }
 
@@ -151,6 +173,11 @@ public class BottomPopUpDialog extends DialogFragment {
 
 
     public interface BottomPopDialogOnClickListener {
+        /**
+         * item点击事件回调
+         *
+         * @param tag item字符串 用于识别item
+         */
         void onDialogClick(String tag);
     }
 
