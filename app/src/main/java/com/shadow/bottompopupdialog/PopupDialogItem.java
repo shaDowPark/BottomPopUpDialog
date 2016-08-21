@@ -45,7 +45,7 @@ public class PopupDialogItem extends LinearLayout {
         mContent = text;
     }
 
-    public void setLineColor(int color){
+    public void setLineColor(int color) {
         mLineView.setBackgroundResource(color);
     }
 

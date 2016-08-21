@@ -101,12 +101,9 @@ public class BottomPopUpDialog extends DialogFragment {
     }
 
 
-
-
-
     /**
      * 设置数据
-     * */
+     */
     public BottomPopUpDialog setDialogData(String[] dataArray) {
         mDataArray = dataArray;
         return this;
@@ -114,7 +111,7 @@ public class BottomPopUpDialog extends DialogFragment {
 
     /**
      * 设置监听item监听器
-     * */
+     */
     public BottomPopUpDialog setItemOnListener(BottomPopDialogOnClickListener listener) {
         mListener = listener;
         return this;
@@ -151,12 +148,11 @@ public class BottomPopUpDialog extends DialogFragment {
 
     /**
      * 设置dialog背景阴影颜色
-     * */
-    public BottomPopUpDialog setBackgroundShadowColor(int color){
+     */
+    public BottomPopUpDialog setBackgroundShadowColor(int color) {
         mBackgroundShadowColor = color;
         return this;
     }
-
 
 
     private void registerListener(View view) {
