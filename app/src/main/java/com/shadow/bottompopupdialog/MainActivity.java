@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    final BottomPopUpDialog dialog = new BottomPopUpDialog()
+                     BottomPopUpDialog dialog = new BottomPopUpDialog()
                             .setDialogData(getResources().getStringArray(R.array.popup_array))
                             .setItemTextColor(2, R.color.colorAccent)
                             .setItemTextColor(4, R.color.colorAccent)

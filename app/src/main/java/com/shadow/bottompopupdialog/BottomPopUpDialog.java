@@ -102,7 +102,7 @@ public class BottomPopUpDialog extends DialogFragment {
 
 
     /**
-     * 设置数据
+     * 设置item数据
      */
     public BottomPopUpDialog setDialogData(String[] dataArray) {
         mDataArray = dataArray;
