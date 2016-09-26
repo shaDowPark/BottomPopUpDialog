@@ -22,27 +22,20 @@ public class BottomPopUpDialog extends DialogFragment {
 
     private LinearLayout mContentLayout;
 
-    private String[] mDataArray;
+    private Builder mBuilder;
 
-    private SparseIntArray mColorArray = new SparseIntArray();
+    private static BottomPopUpDialog getInstance(Builder builder) {
+        BottomPopUpDialog dialog = new BottomPopUpDialog();
+        dialog.mBuilder = builder;
+        return dialog;
 
-    private BottomPopDialogOnClickListener mListener;
-
-    private int mLineColor;
-
-    private boolean mIsCallBackDismiss = false;
-
-    private int mBackgroundShadowColor = R.color.transparent_70;
-
-    public BottomPopUpDialog() {
-        super();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //该方法需要放在onViewCreated比较合适, 若在 onStart 在部分机型(如:小米3)会出现闪烁的情况
-        getDialog().getWindow().setBackgroundDrawableResource(mBackgroundShadowColor);
+        getDialog().getWindow().setBackgroundDrawableResource(mBuilder.mBackgroundShadowColor);
     }
 
     @Override
@@ -61,97 +54,11 @@ public class BottomPopUpDialog extends DialogFragment {
         return view;
     }
 
+
     private void initView(View view) {
         mContentLayout = (LinearLayout) view.findViewById(R.id.pop_dialog_content_layout);
         mCancel = (TextView) view.findViewById(R.id.cancel);
         initItemView();
-    }
-
-
-    private void initItemView() {
-        //循环添加item
-        for (int i = 0; i < mDataArray.length; i++) {
-            final PopupDialogItem dialogItem = new PopupDialogItem(getContext());
-            dialogItem.refreshData(mDataArray[i]);
-
-            //最后一项隐藏分割线
-            if (i == mDataArray.length - 1) {
-                dialogItem.hideLine();
-            }
-
-            //设置字体颜色
-            if (mColorArray.size() != 0 && mColorArray.get(i) != 0) {
-                dialogItem.setTextColor(mColorArray.get(i));
-            }
-
-            if (mLineColor != 0) {
-                dialogItem.setLineColor(mLineColor);
-            }
-
-            mContentLayout.addView(dialogItem);
-
-            dialogItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onDialogClick(dialogItem.getItemContent());
-                    if (mIsCallBackDismiss) dismiss();
-                }
-            });
-        }
-    }
-
-
-    /**
-     * 设置item数据
-     */
-    public BottomPopUpDialog setDialogData(String[] dataArray) {
-        mDataArray = dataArray;
-        return this;
-    }
-
-    /**
-     * 设置监听item监听器
-     */
-    public BottomPopUpDialog setItemOnListener(BottomPopDialogOnClickListener listener) {
-        mListener = listener;
-        return this;
-    }
-
-
-    /**
-     * 设置字体颜色
-     *
-     * @param index item的索引
-     * @param color res color
-     */
-    public BottomPopUpDialog setItemTextColor(int index, int color) {
-        mColorArray.put(index, color);
-        return this;
-    }
-
-    /**
-     * 设置item分隔线颜色
-     */
-    public BottomPopUpDialog setItemLineColor(int color) {
-        mLineColor = color;
-        return this;
-    }
-
-    /**
-     * 设置是否点击回调取消dialog
-     */
-    public BottomPopUpDialog setCallBackDismiss(boolean dismiss) {
-        mIsCallBackDismiss = dismiss;
-        return this;
-    }
-
-
-    /**
-     * 设置dialog背景阴影颜色
-     */
-    public BottomPopUpDialog setBackgroundShadowColor(int color) {
-        mBackgroundShadowColor = color;
-        return this;
     }
 
 
@@ -183,6 +90,123 @@ public class BottomPopUpDialog extends DialogFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void initItemView() {
+        //循环添加item
+        for (int i = 0; i < mBuilder.mDataArray.length; i++) {
+            final PopupDialogItem dialogItem = new PopupDialogItem(getContext());
+            dialogItem.refreshData(mBuilder.mDataArray[i]);
+
+            //最后一项隐藏分割线
+            if (i == mBuilder.mDataArray.length - 1) {
+                dialogItem.hideLine();
+            }
+
+            //设置字体颜色
+            if (mBuilder.mColorArray.size() != 0 && mBuilder.mColorArray.get(i) != 0) {
+                dialogItem.setTextColor(mBuilder.mColorArray.get(i));
+            }
+
+            if (mBuilder.mLineColor != 0) {
+                dialogItem.setLineColor(mBuilder.mLineColor);
+            }
+
+            mContentLayout.addView(dialogItem);
+
+            dialogItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mBuilder.mListener.onDialogClick(dialogItem.getItemContent());
+                    if (mBuilder.mIsCallBackDismiss) dismiss();
+                }
+            });
+        }
+    }
+
+
+    public static class Builder {
+
+        private String[] mDataArray;
+
+        private SparseIntArray mColorArray = new SparseIntArray();
+
+        private BottomPopDialogOnClickListener mListener;
+
+        private int mLineColor;
+
+        private boolean mIsCallBackDismiss = false;
+
+        private int mBackgroundShadowColor = R.color.transparent_70;
+
+
+        /**
+         * 设置item数据
+         */
+        public Builder setDialogData(String[] dataArray) {
+            mDataArray = dataArray;
+            return this;
+        }
+
+        /**
+         * 设置监听item监听器
+         */
+        public Builder setItemOnListener(BottomPopDialogOnClickListener listener) {
+            mListener = listener;
+            return this;
+        }
+
+
+        /**
+         * 设置字体颜色
+         *
+         * @param index item的索引
+         * @param color res color
+         */
+        public Builder setItemTextColor(int index, int color) {
+            mColorArray.put(index, color);
+            return this;
+        }
+
+        /**
+         * 设置item分隔线颜色
+         */
+        public Builder setItemLineColor(int color) {
+            mLineColor = color;
+            return this;
+        }
+
+        /**
+         * 设置是否点击回调取消dialog
+         */
+        public Builder setCallBackDismiss(boolean dismiss) {
+            mIsCallBackDismiss = dismiss;
+            return this;
+        }
+
+
+        /**
+         * 设置dialog背景阴影颜色
+         */
+        public Builder setBackgroundShadowColor(int color) {
+            mBackgroundShadowColor = color;
+            return this;
+        }
+
+
+        public BottomPopUpDialog create() {
+            return BottomPopUpDialog.getInstance(this);
+        }
+
+
+        public BottomPopUpDialog show(FragmentManager manager, String tag) {
+            BottomPopUpDialog dialog = create();
+            dialog.show(manager, tag);
+            return dialog;
+        }
+
+
     }
 
 
